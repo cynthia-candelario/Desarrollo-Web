@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Malla Curricular</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f4f8;
+      color: #333;
+      margin: 0;
+    }
+    header {
+      background: #6c63ff;
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+    .semester {
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem;
+      transition: transform 0.2s ease;
+    }
+    .semester:hover {
+      transform: scale(1.02);
+    }
+    .semester h2 {
+      color: #6c63ff;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    li {
+      background: #f8f9fa;
+      margin-bottom: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    li.crossed {
+      text-decoration: line-through;
+      color: #888;
+    }
+    li.underlined {
+      text-decoration: underline;
+    }
+    li.highlighted {
+      background-color: #ffeaa7;
+    }
+  </style>
+</head>
+<body>
+  <header>Malla Curricular - Plan de Estudios</header>
+  <div class="grid-container">
+
+    <!-- SEMESTRE 1 -->
+    <div class="semester">
+      <h2>1° Semestre</h2>
+      <ul>
+        <li>Cálculo Diferencial</li>
+        <li>Fundamentos de programación</li>
+        <li>Taller de Ética</li>
+        <li>Matemáticas Discretas</li>
+        <li>Taller de Administración</li>
+        <li>Fundamentos de Investigación</li>
+      </ul>
+    </div>
+
+    <!-- SEMESTRE 2 -->
+    <div class="semester">
+      <h2>2° Semestre</h2>
+      <ul>
+        <li>Cálculo Integral</li>
+        <li>Programación Orientada a Objetos</li>
+        <li>Contabilidad Financiera</li>
+        <li>Química</li>
+        <li>Álgebra Lineal</li>
+        <li>Probabilidad y Estadística</li>
+      </ul>
+    </div>
+
+    <!-- SEMESTRE 3 -->
+    <div class="semester">
+      <h2>3° Semestre</h2>
+      <ul>
+        <li>Cálculo Vectorial</li>
+        <li>Estructura de Datos</li>
+        <li>Cultura Empresarial</li>
+        <li>Investigación de Operaciones</li>
+        <li>Desarrollo Sustentable</li>
+        <li>Física General</li>
+      </ul>
+    </div>
+
+    <!-- SEMESTRE 4 -->
+    <div class="semester">
+      <h2>4° Semestre</h2>
+      <ul>
+        <li>Ecuaciones Diferenciales</li>
+        <li>Métodos Numéricos</li>
+        <li>Tópicos Avanzados de Programación</li>
+        <li>Fundamentos de Base de Datos</li>
+        <li>Simulación</li>
+        <li>Principios Eléctricos y Aplicaciones Digitales</li>
+      </ul>
+    </div>
+
+    <!-- SEMESTRE 5 -->
+    <div class="semester">
+      <h2>5° Semestre</h2>
+      <ul>
+        <li>Graficación</li>
+        <li>Fundamentos de Telecomunicaciones</li>
+        <li>Sistemas Operativos</li>
+        <li>Taller de Base de Datos</li>
+        <li>Fundamentos de Ingeniería de Software</li>
+        <li>Arquitectura de computadoras</li>
+      </ul>
+    </div>
+
+    <!-- SEMESTRE 6 -->
+    <div class="semester">
+      <h2>6° Semestre</h2>
+      <ul>
+        <li>Lenguajes y Autómatas I</li>
+        <li>Redes de Computadora</li>
+        <li>Taller de Sistemas Operativos</li>
+        <li>Administración de Base de Datos</li>
+        <li>Ingeniería de Software</li>
+        <li>Lenguajes de Interfaz</li>
+      </ul>
+    </div>
+
+    <!-- SEMESTRE 7 -->
+    <div class="semester">
+      <h2>7° Semestre</h2>
+      <ul>
+        <li>Lenguajes y Autómatas II</li>
+        <li>Conmutación y Enrutamiento de Redes de Datos</li>
+        <li>Taller de Investigación I</li>
+        <li>Ingeniería de requerimientos</li>
+        <li>Gestión de Proyectos de Software</li>
+        <li>Sistemas Programables</li>
+        <li>Servicio Social</li>
+      </ul>
+    </div>
+
+    <!-- SEMESTRE 8 -->
+    <div class="semester">
+      <h2>8° Semestre</h2>
+      <ul>
+        <li>Programación lógica y Funcional</li>
+        <li>Administración de Redes</li>
+        <li>Taller de Investigación II</li>
+        <li>Arquitectura y Diseño de Software</li>
+        <li>Programación Web</li>
+        <li>Proceso Personal de Desarrollo de Software</li>
+      </ul>
+    </div>
+
+    <!-- SEMESTRE 9 -->
+    <div class="semester">
+      <h2>9° Semestre</h2>
+      <ul>
+        <li>Inteligencia Artificial</li>
+        <li>Programación de Móviles</li>
+        <li>Modelo de Desarrollo Integral CMMI</li>
+        <li>Verificación y Validación</li>
+        <li>Residencia Profesionales</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('li').forEach(item => {
+      item.addEventListener('click', () => {
+        if (item.classList.contains('crossed')) {
+          item.classList.remove('crossed');
+          item.classList.add('underlined');
+        } else if (item.classList.contains('underlined')) {
+          item.classList.remove('underlined');
+          item.classList.add('highlighted');
+        } else if (item.classList.contains('highlighted')) {
+          item.classList.remove('highlighted');
+        } else {
+          item.classList.add('crossed');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
