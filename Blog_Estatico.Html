@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mi Blog Estático</title>
+  <style>
+    :root {
+  --font: 'Georgia', serif;
+  --color: #070707;
+  --accent: #1e90ff;
+  --bg: #552424;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font);
+  color: var(--color);
+  background-color: rgb(243, 239, 239);
+  margin: 0;
+  line-height: 1.8;
+}
+
+.container {
+  width: 90%;
+  max-width: 800px;
+  margin: auto;
+  padding: 2rem 0;
+}
+
+header {
+  background: var(--bg);
+  padding: 2rem 0;
+  text-align: center;
+  border-bottom: 1px solid #5ab8b3;
+}
+
+.subtitle {
+  color: #0c0c0c;
+  font-size: 1rem;
+}
+
+h1, h2 {
+  margin-bottom: 0.5rem;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.post-preview {
+  margin-bottom: 3rem;
+}
+
+.post-preview .meta {
+  font-size: 0.9rem;
+  color: #999;
+  margin-bottom: 0.5rem;
+}
+
+.read-more {
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  border-top: 1px solid #eee;
+  color: #666;
+  font-size: 0.9rem;
+}
+</style>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Mi Blog Estático</h1>
+      <p class="subtitle">Ideas, tutoriales y pensamientos sobre tecnología</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="post-preview">
+      <h2><a href="post-1.html">Cómo crear tu primer sitio estático</a></h2>
+      <p class="meta">Publicado el 10 de julio de 2025</p>
+      <p>En este post aprenderás a usar HTML y CSS para construir un sitio simple, rápido y sin backend...</p>
+      <a href="post-1.html" class="read-more">Leer más →</a>
+    </article>
+
+    <article class="post-preview">
+      <h2><a href="post-2.html">Ventajas de usar Markdown con generadores estáticos</a></h2>
+      <p class="meta">Publicado el 1 de julio de 2025</p>
+      <p>Markdown permite escribir contenido fácilmente y convertirlo en páginas HTML con herramientas como Jekyll...</p>
+      <a href="post-2.html" class="read-more">Leer más →</a>
+    </article>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 Mi Blog Estático</p>
+    </div>
+  </footer>
+</body>
+</html>
