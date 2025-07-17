@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To-Do App</title>
+  <style>
+    /* 🎨 VARIABLES DE TEMA CLARO */
+    :root {
+      --bg: #f4f4f4;
+      --text: #333;
+      --card: #fff;
+      --accent: #007bff;
+    }
+
+    /* 🌙 VARIABLES PARA MODO OSCURO */
+    [data-theme="dark"] {
+      --bg: #121212;
+      --text: #f4f4f4;
+      --card: #1e1e1e;
+      --accent: #90caf9;
+    }
+
+    /* 🧱 ESTILOS GENERALES */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    /* 📥 INPUT Y BOTÓN DE AÑADIR */
+    .todo-input {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    input[type="text"] {
+      flex: 1;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      background: var(--accent);
+      border: none;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    /* 📊 FILTROS Y BOTÓN DE MODO OSCURO */
+    .filters, .theme-toggle {
+      display: flex;
+      justify-content: space-between;
+      margin: 1rem 0;
+    }
+
+    /* 📋 LISTA DE TAREAS */
+    .todo-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .todo-item {
+      background: var(--card);
+      margin-bottom: 0.5rem;
+      padding: 0.5rem;
+      border-radius: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* ✅ ESTILO DE TAREA COMPLETADA */
+    .todo-item.completed span {
+      text-decoration: line-through;
+      opacity: 0.6;
+    }
+
+    .todo-item input[type="checkbox"] {
+      margin-right: 0.5rem;
+    }
+
+    .actions button {
+      margin-left: 0.3rem;
+    }
+  </style>
+</head>
+<body data-theme="light"> <!-- Por defecto, tema claro -->
+  <div class="container">
+    <h1>To-Do App</h1>
+
+    <!-- 🔹 Entrada de texto y botón para añadir -->
+    <div class="todo-input">
+      <input type="text" id="taskInput" placeholder="Escribe una tarea..." />
+      <button onclick="addTask()">Añadir</button>
+    </div>
+
+    <!-- 🔍 Filtros de tareas y modo oscuro -->
+    <div class="filters">
+      <div>
+        <button onclick="setFilter('all')">Todas</button>
+        <button onclick="setFilter('pending')">Pendientes</button>
+        <button onclick="setFilter('completed')">Completadas</button>
+      </div>
+      <button class="theme-toggle" onclick="toggleTheme()">🌗 Modo</button>
+    </div>
+
+    <!-- 📃 Lista de tareas -->
+    <ul class="todo-list" id="todoList"></ul>
+  </div>
+
+  <!-- 💻 Lógica JavaScript -->
+  <script>
+    // Array que contiene todas las tareas (se carga desde localStorage si existe)
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+    // Filtro actual ("all", "completed", "pending")
+    let filter = 'all';
+
+    // 📦 Guardar tareas en localStorage
+    function saveTasks() {
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+
+    // 🔁 Mostrar las tareas en pantalla
+    function renderTasks() {
+      const list = document.getElementById("todoList");
+      list.innerHTML = ""; // Limpiar lista antes de renderizar
+
+      // Filtramos según el estado actual
+      tasks
+        .filter(task => {
+          if (filter === 'all') return true;
+          if (filter === 'completed') return task.completed;
+          if (filter === 'pending') return !task.completed;
+        })
+        .forEach((task, index) => {
+          // Crear un elemento <li> por cada tarea
+          const li = document.createElement("li");
+          li.className = "todo-item" + (task.completed ? " completed" : "");
+
+          // Contenido HTML interno del elemento
+          li.innerHTML = `
+            <div>
+              <input type="checkbox" ${task.completed ? "checked" : ""} onclick="toggleComplete(${index})" />
+              <span>${task.text}</span>
+            </div>
+            <div class="actions">
+              <button onclick="editTask(${index})">✏️</button>
+              <button onclick="deleteTask(${index})">🗑️</button>
+            </div>
+          `;
+
+          list.appendChild(li); // Añadirlo al DOM
+        });
+    }
+
+    // ➕ Añadir nueva tarea
+    function addTask() {
+      const input = document.getElementById("taskInput");
+      const text = input.value.trim();
+      if (text) {
+        tasks.push({ text, completed: false }); // Añadir al array
+        input.value = ""; // Limpiar input
+        saveTasks();      // Guardar en localStorage
+        renderTasks();    // Actualizar pantalla
+      }
+    }
+
+    // 📝 Editar una tarea
+    function editTask(index) {
+      const newText = prompt("Editar tarea:", tasks[index].text);
+      if (newText !== null) {
+        tasks[index].text = newText.trim();
+        saveTasks();
+        renderTasks();
+      }
+    }
+
+    // ❌ Eliminar tarea
+    function deleteTask(index) {
+      if (confirm("¿Eliminar esta tarea?")) {
+        tasks.splice(index, 1); // Eliminar del array
+        saveTasks();
+        renderTasks();
+      }
+    }
+
+    // ✔️ Marcar como completada/incompleta
+    function toggleComplete(index) {
+      tasks[index].completed = !tasks[index].completed;
+      saveTasks();
+      renderTasks();
+    }
+
+    // 🎚️ Cambiar filtro
+    function setFilter(value) {
+      filter = value;
+      renderTasks();
+    }
+
+    // 🌗 Cambiar entre modo claro y oscuro
+    function toggleTheme() {
+      const body = document.body;
+      const theme = body.getAttribute("data-theme");
+      const newTheme = theme === "light" ? "dark" : "light";
+      body.setAttribute("data-theme", newTheme);
+    }
+
+    // ⏱️ Renderizar tareas al cargar la página
+    renderTasks();
+  </script>
+</body>
+</html>
